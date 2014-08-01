@@ -65,8 +65,8 @@ This encoding is specified in the *varint* section.
    +----------------------+---------------+---------------------------------------+
    | Type                 | Field         | Description                           |
    +======================+===============+=======================================+
-   | byte                 | Type/Flags    | [7 6 5][4 3 2 1 0]                    |
-   |                      |               | [Type ][  Target ]                    |
+   | byte                 | Type/Flags    | Bitfield  **76543210**   ,            |
+   |                      |               | 7-5 Type(*), 4-0 Target               |
    +----------------------+---------------+---------------------------------------+
    | varint               | Session       | The session number of the source user |
    |                      |               | (only from server)                    |
@@ -80,10 +80,11 @@ This encoding is specified in the *varint* section.
    | Voice packet audio data                                                        |
    +----------------------+---------------+-----------------------------------------+
    | Type                 | Field         | Description                             |
-   +======================+===============+=========================================+
-   | byte                 | Header (CELT) | Bit 1: Terminator, Bit 2-8: Data length |
-   |          or          |               |                                         |
-   | varint               | Header (OPUS) | if OPUS packet type                     |
+   +==============+=======+===============+=========================================+
+   | Header       | byte  | Header (CELT) | Bit 1: Terminator, Bit 2-8: Data length |
+   | depends on   +-------+---------------+-----------------------------------------+
+   | packet type  | varint| Header (OPUS) | if OPUS packet type                     |
+   +--------------+-------+---------------+-----------------------------------------+
    | byte[]               | Data          | Encoded voice frames                    |
    +----------------------+---------------+-----------------------------------------+
   
