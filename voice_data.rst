@@ -65,8 +65,8 @@ This encoding is specified in the *varint* section.
    +----------------------+---------------+---------------------------------------+
    | Type                 | Field         | Description                           |
    +======================+===============+=======================================+
-   | byte                 | Type/Flags    | |7 6 5|4 3 2 1 0|                     |
-   |                      |               | |Type |  Target |                     |
+   | byte                 | Type/Flags    | [7 6 5][4 3 2 1 0]                    |
+   |                      |               | [Type ][  Target ]                    |
    +----------------------+---------------+---------------------------------------+
    | varint               | Session       | The session number of the source user |
    |                      |               | (only from server)                    |
