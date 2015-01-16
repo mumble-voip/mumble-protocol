@@ -81,9 +81,11 @@ This encoding is specified in the *varint* section.
    +----------------------+---------------+-----------------------------------------+
    | Type                 | Field         | Description                             |
    +==============+=======+===============+=========================================+
-   | Header       | byte  | Header (CELT) | Bit 1: Terminator, Bit 2-8: Data length |
+   | Header       | byte  | Header (CELT) | Bitfield **76543210**,                  |
+   |              |       |               | Bit 7: Terminator, Bit 6-0: Data length |
    | depends on   +-------+---------------+-----------------------------------------+
-   | packet type  | varint| Header (OPUS) | if OPUS packet type                     |
+   |              | varint| Header (OPUS) | Bitfield **FEDCBA9876543210**           |
+   | packet type  | int16 |               | Bit D: Terminator, Bit C-0: Data length |
    +--------------+-------+---------------+-----------------------------------------+
    | byte[]               | Data          | Encoded voice frames                    |
    +----------------------+---------------+-----------------------------------------+
